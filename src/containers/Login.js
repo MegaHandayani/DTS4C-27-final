@@ -3,8 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -12,23 +11,15 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Mega1998
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const theme = createTheme();
 
-export const SignInSide =()=> {
+export const Login =()=> {
+  const navigate =useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,6 +27,8 @@ export const SignInSide =()=> {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    navigate("/");
   };
 
   return (
@@ -102,21 +95,24 @@ export const SignInSide =()=> {
               >
                 Sign In
               </Button>
-              <Grid container>
-                
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+              
+              <Grid container justifyContent="flex-end">
+                  <Grid item>
+                    <Link to="/register">
+                      Already have an account? Sign up
+                    </Link>
+                  </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
+             
             </Box>
           </Box>
         </Grid>
+        
       </Grid>
+      
     </ThemeProvider>
+    
   );
 }
 
-export default SignInSide;
+export default Login;
