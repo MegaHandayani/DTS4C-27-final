@@ -7,18 +7,31 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+
+import {useState} from 'react';
+
+import {auth} from '../config/firebase';
+
 import { Link, useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('')
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const email = data.get('email');
+        const password =  data.get('password');
+        
+        try{
+            const {user} = await createUserWithEmailAndPassword(auth, email, password)
+            console.log(user)
+        }catch(error){
+            setErrorMessage(error)
+
+        }
         navigate("/");
     };
 
@@ -72,9 +85,11 @@ const Register = () => {
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
+                            <Button>
                             <Link to="/login">
                                 Already have an account? Sign in
                             </Link>
+                            </Button>
                         </Grid>
                     </Grid>
                 </Box>

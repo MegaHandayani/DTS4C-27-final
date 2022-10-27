@@ -98,10 +98,13 @@ export const Login =()=> {
               
               <Grid container justifyContent="flex-end">
                   <Grid item>
+                  <Button>
                     <Link to="/register">
                       Already have an account? Sign up
                     </Link>
+                    </Button>
                   </Grid>
+                  
               </Grid>
              
             </Box>
