@@ -13,7 +13,7 @@ class News extends React.Component {
   Databerita() {
     axios
       .get(
-        'https://newsapi.org/v2/top-headlines?country=id&apiKey=0c61f72dca1049858cce3f4839ecf473'
+        'https://newsapi.org/v2/everything?q=keyword&apiKey=0c61f72dca1049858cce3f4839ecf473'
       )
       .then(response =>
         response.data.articles.map(
