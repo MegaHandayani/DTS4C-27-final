@@ -6,33 +6,34 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
-
-import {useState} from 'react';
-
-import {auth} from '../config/firebase';
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import * as React from "react";
+import { auth } from '../config/firebase';
 
 
 const Register = () => {
     const navigate = useNavigate();
-    const [setErrorMessage] = useState('')
-
+    const [errorMessage, setErrorMessage] = useState("");
+  
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const email = data.get('email');
-        const password =  data.get('password');
-        
-        try{
-            const {user} = await (auth, email, password);
-            console.log(user)
-        }catch(error){
-            setErrorMessage(error)
-
-        }
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const email = data.get("email");
+      const password = data.get("password");
+  
+      try {
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        console.log(user);
         navigate("/");
+      } catch (error) {
+        setErrorMessage(error.message);
+      }
     };
 
     return (

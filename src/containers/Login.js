@@ -12,23 +12,29 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from "firebase/auth";
 
+import { auth } from "../config/firebase";
 
 
 const theme = createTheme();
 
-export const Login =()=> {
-  const navigate =useNavigate();
+const Login = () => {
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = React.useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get("email");
+    const password = data.get("password");
 
-    navigate("/");
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -98,11 +104,9 @@ export const Login =()=> {
               
               <Grid container justifyContent="flex-end">
                   <Grid item>
-                  <Button>
-                    <Link to="/register">
-                      Already have an account? Sign up
-                    </Link>
-                    </Button>
+
+                    <Link to="/register">{"Already have an account? Sign up"}</Link>
+
                   </Grid>
                   
               </Grid>
