@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import  React from 'react';
+import * as React from 'react';
 
 import {useState} from 'react';
 
@@ -17,7 +17,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState('')
+    const [setErrorMessage] = useState('')
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,7 +26,7 @@ const Register = () => {
         const password =  data.get('password');
         
         try{
-            const {user} = await createUserWithEmailAndPassword(auth, email, password)
+            const {user} = await (auth, email, password);
             console.log(user)
         }catch(error){
             setErrorMessage(error)

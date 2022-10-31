@@ -56,7 +56,7 @@ class News extends React.Component {
             <div className="row">
                 <div className="col-md-12">
                     <div className="alert alert-primary" role="alert">
-                       <h2 className="text-center">News TL</h2> 
+                     
                     </div>
                 </div>
                 
