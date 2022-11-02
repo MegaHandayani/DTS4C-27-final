@@ -21,7 +21,7 @@ const theme = createTheme();
 
 const Login = () => {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = React.useState("");
+  const [setErrorMessage] = React.useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();

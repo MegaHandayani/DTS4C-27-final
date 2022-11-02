@@ -15,7 +15,7 @@ import { auth } from '../config/firebase';
 
 const Register = () => {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState("");
+    const [setErrorMessage] = useState("");
   
     const handleSubmit = async (event) => {
       event.preventDefault();

@@ -54,7 +54,6 @@ class News extends React.Component {
       
       <React.Fragment>
        <Header/>
-       
           <div className="container judulber">
             <div className="row">
                 <div className="col-md-12">
