@@ -6,8 +6,11 @@ import App from './App';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import reportWebVitals from './reportWebVitals';
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import News from './containers/News';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,11 +18,14 @@ root.render(
     <BrowserRouter>
     <Routes>
         <Route path="/" element={
-            <App />
+           <ProtectedRoute>
+             <App />
+           </ProtectedRoute>
           } 
         />
         <Route path="Login" element={<Login/>} />
         <Route path="register" element={<Register/>} />
+        <Route path="news" element={<News/>} />
       </Routes>
    </BrowserRouter>
   </React.StrictMode>

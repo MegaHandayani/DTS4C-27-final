@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
 
 
 
 class News extends React.Component {
   state = {
-    datas: [],
+    datas: [0],
     isLoading: true,
     errors: null
   };
@@ -50,8 +51,10 @@ class News extends React.Component {
   render() {
     const { isLoading, datas } = this.state;
     return (
+      
       <React.Fragment>
-        
+       <Header/>
+       
           <div className="container judulber">
             <div className="row">
                 <div className="col-md-12">
